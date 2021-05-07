@@ -1,0 +1,26 @@
+.navbar{
+    display: flex;
+    align-items: center;
+    padding: 20px 5px;
+    justify-content: space-between;
+    border: 1px solid black;
+}
+.links ul{
+    display: flex;
+    list-style-type: none;
+}
+.login ul{
+    display: flex;
+    list-style-type: none;
+}
+.navbar ul li{
+    padding-right: 15px;
+}
+a{
+    text-decoration: none;
+    color:#555;
+}
+.logo i{
+    color:tomato;
+    font-size: 40px
+}
