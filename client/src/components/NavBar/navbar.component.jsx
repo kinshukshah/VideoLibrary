@@ -1,33 +1,57 @@
+import axios from "axios";
 import React from "react";
-import './navbar.style.css'
-const NavBar = () => {
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { setCurrentUser } from "../../redux/user/user.action";
+import "./navbar.style.css";
+const NavBar = ({ user, setCurrentUser }) => {
+  const handleLogout = async () => {
+    let response = await axios.get("/api/users/logout").then((res) => res.data);
+    if (response.success) {
+      setCurrentUser(null);
+    }
+  };
   return (
     <div className="navbar">
       <div className="logo">
-      <i class="fas fa-play"></i>
-       Play 
+        <i class="fas fa-play"></i>
+        <div className="logo-text">Play</div>
       </div>
-      <div className="links">
-        <ul>
-          <li>
-            <a href="#">Video</a>
-          </li>
-          <li>
-            <a href="#">Subscription</a>
-          </li>
-        </ul>
-      </div>
-      <div className="login">
-        <ul>
-          <li>
-            <a href="#">Login</a>
-          </li>
-          <li>
-            <a href="#">LogOut</a>
-          </li>
-        </ul>
+      <div className="content">
+        <div className="links">
+          <ul>
+            <li>
+              <a href="#">Video</a>
+            </li>
+            <li>
+              <a href="#">Subscription</a>
+            </li>
+          </ul>
+        </div>
+        <div className="login">
+          <ul>
+            <li>
+              {user ? (
+                <div className="logout" onClick={handleLogout}>
+                  Logout
+                </div>
+              ) : (
+                <Link to="/signinsignup">Login</Link>
+              )}
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );
 };
-export default NavBar;
+
+const MapStateToProps = (state) => ({
+  user: state.user.currentUser,
+});
+
+const MapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+});
+
+export default connect(MapStateToProps, MapDispatchToProps)(NavBar);

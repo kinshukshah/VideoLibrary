@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import "./signin.styles.css";
 import axios from "axios";
-import {setCurrentUser} from '../../redux/user/user.action';
+import { setCurrentUser } from "../../redux/user/user.action";
 const SignIn = ({ setCurrentUser, history }) => {
   const [login, setLogin] = useState({ email: "", password: "" });
 
@@ -15,7 +15,7 @@ const SignIn = ({ setCurrentUser, history }) => {
     e.preventDefault();
     console.log(login.email, login.password);
     let response = await axios
-      .post("/api/user/login", login)
+      .post("/api/users/login", login)
       .then((response) => response.data);
     if (response.loginSuccess) {
       history.push("/");

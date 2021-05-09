@@ -4,7 +4,6 @@ import './homepage.style.css'
 const HomePage=() =>{
     return(
         <div className="container">
-            <NavBar/>
         </div>
     )
 }

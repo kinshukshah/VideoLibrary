@@ -5,7 +5,6 @@ import { setCurrentUser } from "../../redux/user/user.action";
 import axios from "axios";
 import { withRouter } from "react-router";
 
-
 const SignUp = ({ setCurrentUser, history }) => {
   const [register, setRegister] = useState({
     name: "",
@@ -41,13 +40,13 @@ const SignUp = ({ setCurrentUser, history }) => {
     console.log(response);
     if (response.success) {
       let loginresponse = await axios
-        .post("/api/user/login", {
+        .post("/api/users/login", {
           email: register.email,
           password: register.password,
         })
         .then((res) => res.data);
       if (loginresponse.loginSuccess) {
-         history.push("/");
+        history.push("/");
         setCurrentUser(response.userAdded);
       }
     }
