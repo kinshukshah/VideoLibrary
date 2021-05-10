@@ -14,7 +14,7 @@ const NavBar = ({ user, setCurrentUser }) => {
   return (
     <div className="navbar">
       <div className="logo">
-        <i class="fas fa-play"></i>
+        <i className="fas fa-play"></i>
         <div className="logo-text">Play</div>
       </div>
       <div className="content">

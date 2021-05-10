@@ -5,9 +5,8 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar/navbar.component";
 import AboutPage from "./pages/AboutPage";
 import HomePage from "./pages/HomePage/homepage.component";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
 import SignInAndSignUp from "./pages/SignInAndSignUp/signInAndSignUp.component";
+import UploadVideoPage from "./pages/UploadVideoPage/uploadvideopage.component";
 import { setCurrentUser } from "./redux/user/user.action";
 
 class App extends React.Component {
@@ -23,13 +22,6 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={HomePage}></Route>
           <Route path="/about" component={AboutPage}></Route>
-          {/* <Route
-            path="/login"
-            render={() =>
-              this.props.user.currentUser ? <Redirect to="/" /> : <LoginPage />
-            }
-          ></Route>
-          <Route path="/register" component={RegisterPage}></Route> */}
           <Route
             path="/signinsignup"
             render={() =>
@@ -40,6 +32,7 @@ class App extends React.Component {
               )
             }
           ></Route>
+          <Route exact path="/video/upload" component={UploadVideoPage}></Route>
         </Switch>
       </div>
     );
