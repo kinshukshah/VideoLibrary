@@ -1,6 +1,7 @@
 .thumbnail-card {
   position: relative;
   height: 69%;
+  cursor: pointer;
 }
 .thumbnail-card img {
   width: 100%;

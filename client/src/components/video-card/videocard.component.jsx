@@ -5,11 +5,12 @@ import "./videocard.styles.css";
 import axios from "axios";
 const VideoCard = (video) => {
   console.log(video);
-  const { title, duration, views, thumbnail, createdAt, writer } = video.video;
+  const { title, duration, views, thumbnail, createdAt, writer, _id } =
+    video.video;
   console.log(title, duration, views, thumbnail, createdAt, writer);
   return (
     <div className="video-card">
-      <ThumbnailCard thumbnail={thumbnail} duration={duration} />
+      <ThumbnailCard thumbnail={thumbnail} duration={duration} videoId={_id} />
       <VideoDetails
         title={title}
         views={views}
