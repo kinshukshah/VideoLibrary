@@ -1,0 +1,9 @@
+.video-card {
+  width: 24%;
+  height: 250px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

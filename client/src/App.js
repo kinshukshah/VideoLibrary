@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar/navbar.component";
 import AboutPage from "./pages/AboutPage";
+import DetailVideoPage from "./pages/DetailVideoPage/detailvideopage.component";
 import HomePage from "./pages/HomePage/homepage.component";
 import SignInAndSignUp from "./pages/SignInAndSignUp/signInAndSignUp.component";
 import UploadVideoPage from "./pages/UploadVideoPage/uploadvideopage.component";
@@ -33,6 +34,11 @@ class App extends React.Component {
             }
           ></Route>
           <Route exact path="/video/upload" component={UploadVideoPage}></Route>
+          <Route
+            exact
+            path="/video/:videoId"
+            component={DetailVideoPage}
+          ></Route>
         </Switch>
       </div>
     );

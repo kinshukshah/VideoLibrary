@@ -7,6 +7,7 @@ const { User } = require("./model/user");
 const { mongoURI } = require("./config/key");
 const { auth } = require("./middleware/auth");
 const { router } = require("./routes/user");
+const { VideoRouter } = require("./routes/video");
 const port = process.env.PORT || 5000;
 
 app.use(express.urlencoded({ extended: true }));
@@ -28,6 +29,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/users", require("./routes/user"));
+app.use("/api/video", require("./routes/video"));
+app.use("/uploads", express.static("uploads"));
 
 // app.get("/api/user/auth", auth, (req, res) => {
 //   res.status(200).json({

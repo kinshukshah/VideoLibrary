@@ -1,6 +1,11 @@
-.container{
-    max-width: 1300px;
-    width: 1200px;
-    margin: auto;
-    padding:0 15px;
+.container {
+  max-width: 1300px;
+  width: 1200px;
+  margin: auto;
+  padding: 0 15px;
+}
+.videos-recommendation {
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: row wrap;
 }
