@@ -18,6 +18,8 @@ const SignIn = ({ setCurrentUser, history }) => {
       .post("/api/users/login", login)
       .then((response) => response.data);
     if (response.loginSuccess) {
+      console.log(response);
+      localStorage.setItem("userId", response.user._id);
       history.push("/");
       setCurrentUser(response);
     }

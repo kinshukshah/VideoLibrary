@@ -1,16 +1,19 @@
 import React from "react";
 import moment from "moment";
 import "./videodetails.styles.css";
-const VideoDetails = ({ title, writer, views, createdAt }) => {
+const VideoDetails = ({ title, writer, views, createdAt, sidevideo }) => {
   return (
     <div className="video-details">
-      <div className="avatar">
-        <img
-          src="https://material-ui.com/static/images/avatar/1.jpg"
-          alt="Avatar1"
-          class="img_round"
-        />
-      </div>
+      {sidevideo ? null : (
+        <div className="avatar">
+          <img
+            src="https://material-ui.com/static/images/avatar/1.jpg"
+            alt="Avatar1"
+            class="img_round"
+          />
+        </div>
+      )}
+
       <div className="details">
         <span>{title}</span>
         <span>{writer}</span>

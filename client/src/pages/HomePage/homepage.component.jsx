@@ -13,14 +13,13 @@ const HomePage = () => {
       }
     });
   }, []);
-  console.log(videos);
   return (
     <div className="container">
       <h2>Recommended</h2>
       <hr />
       <div className="videos-recommendation">
         {videos.length > 0
-          ? videos.map((video) => <VideoCard video={video} />)
+          ? videos.map((video) => <VideoCard key={video._id} video={video} />)
           : null}
       </div>
     </div>

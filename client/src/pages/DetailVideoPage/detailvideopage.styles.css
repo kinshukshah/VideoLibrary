@@ -1,7 +1,17 @@
-.single-video {
-  max-width: 1200px;
+.detail-video-page {
+  display: flex;
   padding: 3rem 4rem;
 }
+.single-video {
+  max-width: 1200px;
+  width: 70%;
+  margin-right: 70px;
+}
 .single-video video {
-  width: 80%;
+  width: 100%;
+}
+.video-details-detail-page {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
 }

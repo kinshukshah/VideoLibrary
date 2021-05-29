@@ -3,6 +3,9 @@
   height: 69%;
   cursor: pointer;
 }
+.sidevideo {
+  height: 100%;
+}
 .thumbnail-card img {
   width: 100%;
   height: 100%;
