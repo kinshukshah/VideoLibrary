@@ -24,7 +24,7 @@ const NavBar = ({ user, setCurrentUser }) => {
               <a href="#">Video</a>
             </li>
             <li>
-              <a href="#">Subscription</a>
+              <Link to="/subscription">Subscriptions</Link>
             </li>
           </ul>
         </div>

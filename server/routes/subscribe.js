@@ -56,4 +56,19 @@ Router.post("/unsubscribe", (req, res) => {
   });
 });
 
+Router.post("/getSubscriptionVideos", (req, res) => {
+  Subscribe.find(req.body).exec((err, subscriber) => {
+    if (err) return res.status(400).send(err);
+    let subscriberUser = [];
+    subscriber.map((sub, i) => {
+      subscriberUser.push(sub.userTo);
+    });
+    // res.status(200).json({ success: true, subscriberUser });
+    User.find({ _id: { $in: subscriberUser } }).exec((err, users) => {
+      if (err) return res.status(400).send(err);
+      res.status(200).json({ success: true, users });
+    });
+  });
+});
+
 module.exports = Router;

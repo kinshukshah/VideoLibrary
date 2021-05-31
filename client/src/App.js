@@ -1,12 +1,13 @@
 import axios from "axios";
 import React from "react";
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Redirect, Route, Router, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar/navbar.component";
 import AboutPage from "./pages/AboutPage";
 import DetailVideoPage from "./pages/DetailVideoPage/detailvideopage.component";
 import HomePage from "./pages/HomePage/homepage.component";
 import SignInAndSignUp from "./pages/SignInAndSignUp/signInAndSignUp.component";
+import SubscriptionPage from "./pages/SubscriptionPage/subscriptionpage.component";
 import UploadVideoPage from "./pages/UploadVideoPage/uploadvideopage.component";
 import { setCurrentUser } from "./redux/user/user.action";
 
@@ -38,6 +39,11 @@ class App extends React.Component {
             exact
             path="/video/:videoId"
             component={DetailVideoPage}
+          ></Route>
+          <Route
+            exact
+            path="/subscription"
+            component={SubscriptionPage}
           ></Route>
         </Switch>
       </div>
