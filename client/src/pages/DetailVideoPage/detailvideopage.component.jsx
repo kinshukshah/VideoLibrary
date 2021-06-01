@@ -4,19 +4,38 @@ import VideoDetails from "../../components/video-details/videodetails.component"
 import axios from "axios";
 import SideVideo from "../../components/side-video/SideVideo.component";
 import Subscribe from "../../components/Subscribe/subscribe.component";
+import Comments from "../../components/Comments/comments.component";
 const DetailVideoPage = ({ match }) => {
   const [video, setVideo] = useState("");
+  const [commentlist, setCommentList] = useState([]);
   const videoId = match.params.videoId;
-  const videoVariable = { videoId };
+  // const videoVariable = { videoId };
+
   useEffect(() => {
-    axios.post("/api/video/getVideo", videoVariable).then((res) => {
+    axios.post("/api/video/getVideo", { videoId }).then((res) => {
       if (res.data.success) {
         setVideo(res.data.video);
       } else {
         alert("Video Not Found");
       }
     });
-  }, [videoVariable]);
+
+    axios
+      .post("/api/comment/getAllComments", { postId: videoId })
+      .then((res) => {
+        if (res.data.success) {
+          console.log(res.data);
+          setCommentList(res.data.commentlist);
+        } else {
+          alert("Could not fetch comments");
+        }
+      });
+  }, [videoId]);
+
+  const handleRefereshComment = (NewComment) => {
+    setCommentList((commentlist) => commentlist.concat(NewComment));
+  };
+
   if (video.writer) {
     return (
       <div className="detail-video-page">
@@ -40,6 +59,11 @@ const DetailVideoPage = ({ match }) => {
               userFrom={localStorage.getItem("userId")}
             />
           </div>
+          <Comments
+            postId={video._id}
+            commentlist={commentlist}
+            handleRefereshComment={handleRefereshComment}
+          />
         </div>
         <SideVideo />
       </div>
