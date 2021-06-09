@@ -24,7 +24,6 @@ const DetailVideoPage = ({ match }) => {
       .post("/api/comment/getAllComments", { postId: videoId })
       .then((res) => {
         if (res.data.success) {
-          console.log(res.data);
           setCommentList(res.data.commentlist);
         } else {
           alert("Could not fetch comments");

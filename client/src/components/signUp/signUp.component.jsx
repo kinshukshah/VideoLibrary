@@ -33,11 +33,9 @@ const SignUp = ({ setCurrentUser, history }) => {
       lastname: register.lastname,
       password: register.password,
     };
-    console.log(datatosubmit);
     let response = await axios
       .post("/api/users/register", datatosubmit)
       .then((res) => res.data);
-    console.log(response);
     if (response.success) {
       let loginresponse = await axios
         .post("/api/users/login", {

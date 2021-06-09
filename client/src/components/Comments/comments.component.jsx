@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import ReplyComment from "../ReplyComment/reply-comment.component";
 import SingleComment from "../SingleComment/single-comment.component";
 import "./comments.styles.css";
 
@@ -17,7 +18,6 @@ const Comments = ({ postId, commentlist, handleRefereshComment }) => {
     };
     axios.post("/api/comment/saveComment", commentVariable).then((res) => {
       if (res.data.success) {
-        console.log(res.data);
         setComment("");
         handleRefereshComment(res.data.comment);
       } else {
@@ -25,9 +25,6 @@ const Comments = ({ postId, commentlist, handleRefereshComment }) => {
       }
     });
   };
-  useEffect(() => {
-    console.log(commentlist);
-  }, [commentlist]);
 
   return (
     <div>
@@ -37,13 +34,21 @@ const Comments = ({ postId, commentlist, handleRefereshComment }) => {
         commentlist.map(
           (comment) =>
             !comment.responseTo && (
-              <SingleComment
-                writer={comment.writer.name}
-                content={comment.content}
-                postId={postId}
-                handleRefereshComment={handleRefereshComment}
-                commentId={comment._id}
-              />
+              <>
+                <SingleComment
+                  writer={comment.writer.name}
+                  content={comment.content}
+                  postId={postId}
+                  handleRefereshComment={handleRefereshComment}
+                  commentId={comment._id}
+                />
+                <ReplyComment
+                  commentlist={commentlist}
+                  postId={postId}
+                  parentCommentId={comment._id}
+                  handleRefereshComment={handleRefereshComment}
+                />
+              </>
             )
         )}
       <form className="submit-comment-form" onSubmit={handleSubmit}>

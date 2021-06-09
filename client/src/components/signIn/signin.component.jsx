@@ -13,12 +13,10 @@ const SignIn = ({ setCurrentUser, history }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(login.email, login.password);
     let response = await axios
       .post("/api/users/login", login)
       .then((response) => response.data);
     if (response.loginSuccess) {
-      console.log(response);
       localStorage.setItem("userId", response.user._id);
       history.push("/");
       setCurrentUser(response);

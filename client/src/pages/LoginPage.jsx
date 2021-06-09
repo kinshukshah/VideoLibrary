@@ -8,7 +8,6 @@ const LoginPage = ({ setCurrentUser, history }) => {
   const [password, setPassword] = useState("");
 
   const handleChange = (e) => {
-    console.log(e.target.name);
     if (e.target.name === "email") {
       setEmail(e.target.value);
     } else {
@@ -18,7 +17,6 @@ const LoginPage = ({ setCurrentUser, history }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email, password);
     let dataToSubmit = { email, password };
     let response = await axios
       .post("/api/user/login", dataToSubmit)

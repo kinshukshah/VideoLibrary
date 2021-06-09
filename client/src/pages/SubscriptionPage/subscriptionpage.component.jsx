@@ -11,7 +11,6 @@ const SubscriptionPage = () => {
       .post("/api/subscribe/getSubscriptionVideos", subscriberVariable)
       .then((res) => {
         if (res.data.success) {
-          console.log(res.data);
           setSubscriber(res.data.users);
         } else {
           alert("Something went wrong! Could not load subscribers");

@@ -19,7 +19,6 @@ const Subscribe = ({ userTo, userFrom, userToWriterName }) => {
 
     axios.post("/api/subscribe/issubscribed", subscribeVariable).then((res) => {
       if (res.data.success) {
-        console.log(res.data);
         setIsSubscribed(res.data.isSubscribed);
       } else {
         alert("Something went wrong");

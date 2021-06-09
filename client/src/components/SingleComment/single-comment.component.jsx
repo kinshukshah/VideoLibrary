@@ -28,7 +28,6 @@ const SingleComment = ({
     };
     axios.post("/api/comment/saveComment", commentVariable).then((res) => {
       if (res.data.success) {
-        console.log(res.data);
         setComment("");
         setOpenReply(!openReply);
         handleRefereshComment(res.data.comment);
