@@ -5,6 +5,7 @@ var path = require("path");
 const { User } = require("../model/user");
 const { Video } = require("../model/video");
 const { auth } = require("../middleware/auth");
+const { getVideoDurationInSeconds } = require("get-video-duration");
 const ffmpeg = require("fluent-ffmpeg");
 
 var storage = multer.diskStorage({
@@ -39,6 +40,12 @@ VideoRouter.post("/uploadfiles", async (req, res) => {
   });
 });
 
+VideoRouter.post("/getduration", (req, res) => {
+  getVideoDurationInSeconds(req.body.url).then((duration) => {
+    res.status(200).json({ success: true, duration });
+  });
+});
+
 VideoRouter.post("/thumbnail", async (req, res) => {
   let thumbsFilePath = "";
   let fileDuration = "";
@@ -65,8 +72,11 @@ VideoRouter.post("/thumbnail", async (req, res) => {
     });
 });
 
-VideoRouter.post("/upload", (req, res) => {
-  const video = new Video(req.body);
+VideoRouter.post("/upload", async (req, res) => {
+  let uploadDetails;
+  let duration = await getVideoDurationInSeconds(req.body.filePath);
+  uploadDetails = { ...req.body, duration };
+  const video = new Video(uploadDetails);
   video.save((err, video) => {
     if (err) return res.status(400).json({ success: false, err });
     return res.status(200).json({

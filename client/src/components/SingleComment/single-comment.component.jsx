@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import LikeDislike from "../LikeDislike/likedislike.component";
 import "./single-comment.styles.css";
 
 const SingleComment = ({
@@ -52,6 +53,7 @@ const SingleComment = ({
         </div>
       </div>
       <div>
+        <LikeDislike commentId={commentId} />
         <span className="reply-to" onClick={toggleReplyTo}>
           Reply to
         </span>

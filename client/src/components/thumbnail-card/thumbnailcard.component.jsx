@@ -7,6 +7,7 @@ const ThumbnailCard = ({
   videoId,
   history,
   sidevideo,
+  filePath,
 }) => {
   const minutes = Math.floor(duration / 60);
   const seconds = Math.floor(duration - minutes * 60);
@@ -15,7 +16,8 @@ const ThumbnailCard = ({
       className={`thumbnail-card ${sidevideo ? "sidevideo" : null}`}
       onClick={() => history.push(`/video/${videoId}`)}
     >
-      <img src={`http://localhost:5000/${thumbnail}`} alt="Thumbnail"></img>
+      {/* <img src={`http://localhost:5000/${thumbnail}`} alt="Thumbnail"></img> */}
+      <video src={`${filePath}#t=2,3`}></video>
       <div className="duration">
         <span>
           {minutes}:{seconds}

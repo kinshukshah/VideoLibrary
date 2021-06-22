@@ -5,6 +5,7 @@ import axios from "axios";
 import SideVideo from "../../components/side-video/SideVideo.component";
 import Subscribe from "../../components/Subscribe/subscribe.component";
 import Comments from "../../components/Comments/comments.component";
+import LikeDislike from "../../components/LikeDislike/likedislike.component";
 const DetailVideoPage = ({ match }) => {
   const [video, setVideo] = useState("");
   const [commentlist, setCommentList] = useState([]);
@@ -40,7 +41,8 @@ const DetailVideoPage = ({ match }) => {
       <div className="detail-video-page">
         <div className="single-video">
           <video
-            src={`http://localhost:5000/${video.filePath}`}
+            // src={`http://localhost:5000/${video.filePath}`}
+            src={video.filePath}
             controls
           ></video>
           <div className="video-details-detail-page">
@@ -52,6 +54,7 @@ const DetailVideoPage = ({ match }) => {
                 video.writer === undefined ? "Default" : video.writer.name
               }
             />
+            <LikeDislike videoId={videoId} />
             <Subscribe
               userTo={video.writer._id}
               userToWriterName={video.writer.name}

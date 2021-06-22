@@ -4,6 +4,7 @@ import FormInput from "../../components/form-input/form-input.component";
 import axios from "axios";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import Loading from "../../components/Loading/loading.component";
 function UploadVideoPage({ user, history }) {
   const [uploadVideo, setUploadVideo] = useState({
     title: "",
@@ -15,8 +16,10 @@ function UploadVideoPage({ user, history }) {
       filePath: "",
     },
   });
+  const [file, setFile] = useState(null);
   const [duration, setDuration] = useState("");
   const [thumbnail, setThumbnail] = useState("");
+  const [videoUrl, setVideoUrl] = useState(null);
   const Private = [
     { value: 0, label: "Private" },
     { value: 1, label: "Public" },
@@ -28,6 +31,8 @@ function UploadVideoPage({ user, history }) {
     { value: "Films & Animations", label: "Films & Animations" },
     { value: "Films & Animations", label: "Films & Animations" },
   ];
+
+  const types = [".mp4"];
 
   const handleChange = (e) => {
     setUploadVideo({ ...uploadVideo, [e.target.name]: e.target.value });
@@ -45,9 +50,9 @@ function UploadVideoPage({ user, history }) {
       title: uploadVideo.title,
       description: uploadVideo.description,
       privacy: uploadVideo.status,
-      filePath: uploadVideo.fileInfo.filePath,
+      filePath: videoUrl,
       category: uploadVideo.fileInfo.category,
-      duration: duration,
+      // duration: duration,
       thumbnail: thumbnail,
     };
     axios.post("/api/video/upload", dataToSave).then((res) => {
@@ -58,35 +63,42 @@ function UploadVideoPage({ user, history }) {
         alert("Could not upload the video");
       }
     });
-    console.log(uploadVideo);
   };
 
   const onDrop = (acceptedFiles) => {
-    console.log(uploadVideo);
-    let formData = new FormData();
-    let config = { header: { "content-type": "multipart/form-data" } };
-    formData.append("file", acceptedFiles[0]);
-    axios.post("/api/video/uploadfiles", formData, config).then((res) => {
-      if (res.data.success) {
-        let { fileName, filePath } = res.data;
-        setUploadVideo({ ...uploadVideo, fileInfo: { fileName, filePath } });
-        //generate thumbnail with this filepath
-        axios
-          .post("/api/video/thumbnail", { fileName, filePath })
-          .then((res) => {
-            if (res.data.success) {
-              let { thumbsFilePath, fileDuration } = res.data;
-              console.log(thumbsFilePath, fileDuration);
-              setDuration(fileDuration);
-              setThumbnail(thumbsFilePath);
-            } else {
-              alert("Failed to make thumnails");
-            }
-          });
-      } else {
-        alert("Failed to save the video");
-      }
-    });
+    // let formData = new FormData();
+    // let config = { header: { "content-type": "multipart/form-data" } };
+    // formData.append("file", acceptedFiles[0]);
+    // axios.post("/api/video/uploadfiles", formData, config).then((res) => {
+    //   if (res.data.success) {
+    //     let { fileName, filePath } = res.data;
+    //     setUploadVideo({ ...uploadVideo, fileInfo: { fileName, filePath } });
+    //     //generate thumbnail with this filepath
+    //     axios
+    //       .post("/api/video/thumbnail", { fileName, filePath })
+    //       .then((res) => {
+    //         if (res.data.success) {
+    //           let { thumbsFilePath, fileDuration } = res.data;
+    //           setDuration(fileDuration);
+    //           setThumbnail(thumbsFilePath);
+    //         } else {
+    //           alert("Failed to make thumnails");
+    //         }
+    //       });
+    //   } else {
+    //     alert("Failed to save the video");
+    //   }
+    // });
+
+    /* Firebase storage code */
+
+    let selected = acceptedFiles[0];
+    if (selected) {
+      setFile(selected);
+    } else {
+      setFile(null);
+      alert("Please select only MP4 files");
+    }
   };
   return (
     <div>
@@ -122,6 +134,14 @@ function UploadVideoPage({ user, history }) {
                 alt="Thumbnail"
               ></img>
             </div>
+          )}
+          {file && (
+            <Loading
+              file={file}
+              setFile={setFile}
+              setVideoUrl={setVideoUrl}
+              setDuration={setDuration}
+            />
           )}
         </div>
         <FormInput

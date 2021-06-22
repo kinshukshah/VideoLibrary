@@ -57,7 +57,7 @@ const Subscribe = ({ userTo, userFrom, userToWriterName }) => {
     }
   };
   return (
-    <div>
+    <div className="subscribe-btn-component">
       <button
         className={`subscribe-btn ${
           isSubscribed ? "already-subscribed" : null

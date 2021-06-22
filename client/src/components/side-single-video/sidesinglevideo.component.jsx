@@ -4,8 +4,16 @@ import ThumbnailCard from "../thumbnail-card/thumbnailcard.component";
 import "./sidesinglevideo.styles.css";
 
 const SideSingleVideo = (video) => {
-  const { title, duration, views, thumbnail, createdAt, writer, _id } =
-    video.video;
+  const {
+    title,
+    duration,
+    views,
+    thumbnail,
+    createdAt,
+    writer,
+    _id,
+    filePath,
+  } = video.video;
   return (
     <div className="side-single-video">
       <div className="thumbnail">
@@ -13,6 +21,7 @@ const SideSingleVideo = (video) => {
           thumbnail={thumbnail}
           duration={duration}
           videoId={_id}
+          filePath={filePath}
           sidevideo
         />
       </div>

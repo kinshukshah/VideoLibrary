@@ -7,6 +7,7 @@ const HomePage = () => {
   useEffect(() => {
     axios.get("/api/video/getVideos").then((res) => {
       if (res.data.success) {
+        console.log(res.data.videos);
         setVideos(res.data.videos);
       } else {
         alert("Failed to get videos");

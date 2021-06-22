@@ -1,14 +1,31 @@
 import React, { useState, useEffect } from "react";
 import ThumbnailCard from "../thumbnail-card/thumbnailcard.component";
 import VideoDetails from "../video-details/videodetails.component";
+import { withRouter } from "react-router";
 import "./videocard.styles.css";
 import axios from "axios";
-const VideoCard = (video) => {
-  const { title, duration, views, thumbnail, createdAt, writer, _id } =
-    video.video;
+const VideoCard = ({ video, history }) => {
+  const {
+    title,
+    duration,
+    views,
+    thumbnail,
+    createdAt,
+    writer,
+    _id,
+    filePath,
+  } = video;
+  console.log(video.filePath);
   return (
+    //onClick={() => history.push(`/video/${_id}`)}
     <div className="video-card">
-      <ThumbnailCard thumbnail={thumbnail} duration={duration} videoId={_id} />
+      {/* <video src={`${filePath}#t=2,3`}></video> */}
+      <ThumbnailCard
+        thumbnail={thumbnail}
+        duration={duration}
+        videoId={_id}
+        filePath={filePath}
+      />
       <VideoDetails
         title={title}
         views={views}
@@ -18,4 +35,4 @@ const VideoCard = (video) => {
     </div>
   );
 };
-export default VideoCard;
+export default withRouter(VideoCard);
