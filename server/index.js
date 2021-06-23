@@ -36,6 +36,17 @@ app.use("/api/like", require("./routes/like"));
 app.use("/api/dislike", require("./routes/dislike"));
 app.use("/uploads", express.static("uploads"));
 
+//Serve Static assets if in production
+if (process.env.NODE_ENV === "production") {
+  //Set static folder
+  //All the JS & CSS file after production will be served from this folder
+  app.use(express.static("client/build"));
+  //index.html for all page routes
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));
+  });
+}
+
 // app.get("/api/user/auth", auth, (req, res) => {
 //   res.status(200).json({
 //     isAuth: true,
