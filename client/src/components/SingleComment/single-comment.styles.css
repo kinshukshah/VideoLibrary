@@ -1,0 +1,18 @@
+.single-comment {
+  display: flex;
+  align-items: center;
+}
+.comment-avatar img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+.comment-avatar {
+  margin-right: 10px;
+}
+.writer {
+  font-weight: 500;
+}
+.comment-details {
+  line-height: 1.6;
+}

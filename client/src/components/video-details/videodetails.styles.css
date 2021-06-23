@@ -1,0 +1,16 @@
+.video-details {
+  display: flex;
+  height: 29%;
+}
+.details {
+  display: flex;
+  flex-direction: column;
+}
+.avatar {
+  padding-right: 20px;
+}
+.avatar img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}

@@ -1,0 +1,14 @@
+.comment-section {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.comment-section textarea {
+  width: 80%;
+  border-radius: 5px;
+  height: 40px;
+  margin-right: 10px;
+}
+.submit-comment-btn {
+  width: 20%;
+}

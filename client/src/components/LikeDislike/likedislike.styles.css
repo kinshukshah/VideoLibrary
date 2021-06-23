@@ -1,0 +1,32 @@
+.like-dislike {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 15px;
+}
+.like {
+  font-size: 30px;
+  margin-right: 10px;
+}
+/* .like i {
+  color: gray;
+} */
+.dislike {
+  font-size: 30px;
+}
+/* .dislike i {
+  color: gray;
+} */
+.like span,
+.dislike span {
+  color: gray;
+  font-size: 20px;
+}
+.notliked {
+  color: gray;
+}
+.isliked,
+.isdisliked {
+  color: blue;
+}

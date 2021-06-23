@@ -1,0 +1,11 @@
+.side-single-video {
+  display: flex;
+  height: 120px;
+  margin-bottom: 10px;
+}
+.thumbnail {
+  width: 55%;
+}
+.videodetails {
+  width: 45%;
+}

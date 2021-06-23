@@ -1,0 +1,4 @@
+.subscriptions {
+  display: flex;
+  flex-wrap: wrap;
+}
