@@ -5,7 +5,7 @@ import axios from "axios";
 const HomePage = () => {
   const [videos, setVideos] = useState([]);
   useEffect(() => {
-    axios.get(`${process.env.ApiUrl}/api/video/getVideos`).then((res) => {
+    axios.get(`/api/video/getVideos`).then((res) => {
       if (res.data.success) {
         console.log(res.data.videos);
         setVideos(res.data.videos);
